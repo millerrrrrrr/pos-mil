@@ -16,8 +16,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Theme style -->
   <link rel="stylesheet" href="../dist/css/adminlte.min.css">
 
+   <!-- DataTables -->
+   <link rel="stylesheet" href="../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+
   <!-- SweetAlert2 -->
   <link rel="stylesheet" href="../plugins/sweetalert2/sweetalert2.min.css">
+
+
+  <!-- Select2 -->
+  <link rel="stylesheet" href="../plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  <link rel="stylesheet" href="../plugins/select2/css/select2.min.css">
+
+
+  <!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+
+
 
   <style>
     .main-header{
@@ -177,7 +193,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
       <img src="../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light">POS BAR</span>
     </a>
 
     <!-- Sidebar -->
@@ -220,7 +236,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="category.php" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
                 Category
@@ -229,7 +245,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="addproduct.php" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
                 Product
@@ -238,7 +254,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="productlist.php" class="nav-link">
+              <i class="nav-icon fas fa-list"></i>
+              <p>
+                Product List
+               
+              </p>
+            </a>
+          </li>
+          <!-- <li class="nav-item">
+            <a href="supplier.php" class="nav-link">
+            <i class="nav-icon far fa-handshake"></i>
+              <p>
+                Supplier
+                
+              </p>
+            </a>
+          </li> -->
+          <li class="nav-item">
+            <a href="pos.php" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
                 POS
@@ -247,10 +281,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="orderlist.php" class="nav-link">
               <i class="nav-icon fas fa-list"></i>
               <p>
                 Order List
+               
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="employee.php" class="nav-link">
+              <i class="nav-icon fas fa-user-alt"></i>
+              <p>
+                Employee
+               
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="listofemployee.php" class="nav-link">
+              <i class="nav-icon fas fa-user-alt"></i>
+              <p>
+                List of Employee
                
               </p>
             </a>
@@ -265,7 +317,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+        <a href="taxdis.php" class="nav-link">
               <i class="nav-icon fas fa-calculator"></i>
               <p>
                 Tax

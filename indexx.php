@@ -1,50 +1,68 @@
-<?php
+<?php 
 include_once 'ui/connectdb.php';
+
 session_start();
 
-if (isset($_POST['btn_submit'])) {
+if(isset($_POST['btn_submit'])){
 
-    $useremailOrusername = $_POST['txt_email'];
-    $password = $_POST['txt_password'];
 
-    $select = $pdo->prepare("SELECT * FROM tbl_user WHERE (useremail=:useremail OR username=:username) AND userpassword=:password");
-    $select->bindParam(':username', $useremailOrusername);
-    $select->bindParam(':useremail', $useremailOrusername);
-    $select->bindParam(':password', $password);
-    $select->execute();
+  $useremail = $_POST['txt_email'];
+  $password = $_POST['txt_password'];
 
-    $row = $select->fetch(PDO::FETCH_ASSOC);
+  $select = $pdo->prepare("select * from tbl_user where useremail='$useremail' AND userpassword='$password'");
+  $select->execute();
 
-    if (is_array($row)) {
+  $row = $select->fetch(PDO::FETCH_ASSOC);
 
-        if ($row['useremail'] == $useremailOrusername || $row['username'] == $useremailOrusername) {
+  
+  if(is_array($row)){
 
-            $_SESSION['userid'] = $row['userid'];
-            $_SESSION['username'] = $row['username'];
-            $_SESSION['useremail'] = $row['useremail'];
-            $_SESSION['role'] = $row['role'];
+    if($row['useremail'] == $useremail AND $row['userpassword'] == $password AND $row['role'] == 'Admin'){
 
-            if ($row['role'] == 'Admin') {
-                $_SESSION['status'] = "Login Success by Admin";
-                $_SESSION['status_code'] = "success";
-                header('refresh: 1; ui/dashboard.php');
-            } elseif ($row['role'] == 'User') {
-                $_SESSION['status'] = "Login Success by User";
-                $_SESSION['status_code'] = "success";
-                header('refresh: 1; ui/user.php');
-            }
-        }
+      $_SESSION['userid'] = $row['userid'];
+      $_SESSION['username'] = $row['username'];
+      $_SESSION['useremail'] = $row['useremail'];
+      $_SESSION['role'] = $row['role'];
 
-    } else {
 
-        $_SESSION['status'] = "Wrong email or password";
-        $_SESSION['status_code'] = "error";
+      $_SESSION['status'] = "Login Success by Admin";
+      $_SESSION['status_code'] = "success";
+
+      header('refresh: 1; ui/dashboard.php');
+      
+  
+    }else if($row['useremail'] == $useremail AND $row['userpassword'] == $password AND $row['role'] == 'User'){
+
+      $_SESSION['status'] = "Login Success by User";
+      $_SESSION['status_code'] = "success";
+
+      header('refresh: 1; ui/user.php');
+
+      $_SESSION['userid'] = $row['userid'];
+      $_SESSION['username'] = $row['username'];
+      $_SESSION['useremail'] = $row['useremail'];
+      $_SESSION['role'] = $row['role'];
+
     }
+
+  }else{
+
+    $_SESSION['status'] = "Wrong email or password";
+    $_SESSION['status_code'] = "error";
+
+    // echo $success = 'wrong email or password';
+
+  }  
+
+
+//  echo $useremail." ".$password;
+
 }
+
+
+
+
 ?>
-
-
-
 
 
 <!DOCTYPE html>
@@ -105,7 +123,7 @@ if (isset($_POST['btn_submit'])) {
 
       <form action="" method="post">
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Email" name="txt_email" required>
+          <input type="email" class="form-control" placeholder="Email" name="txt_email" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -123,7 +141,7 @@ if (isset($_POST['btn_submit'])) {
         <div class="row">
           <div class="col-8">
             <div class="icheck-primary">
-            <a href="#">I forgot my password</a>
+            <a href="forgot-password.html">I forgot my password</a>
             </div>
           </div>
           <!-- /.col -->
@@ -131,11 +149,6 @@ if (isset($_POST['btn_submit'])) {
             <button type="submit" class="btn btn-primary btn-block" name="btn_submit">Log In</button>
           </div>
           <!-- /.col -->
-        </div>
-        <div class="row">
-          <div class="col-12">
-            <a href="#">Register an account?</a>
-          </div>
         </div>
       </form>
 
